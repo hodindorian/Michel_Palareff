@@ -1,0 +1,69 @@
+<app-header />
+
+<main class="detail">
+  @if (ref(); as r) {
+    <a routerLink="/feed" class="back-link">← Retour au feed</a>
+    <div class="post">
+      <div class="player">
+        @if (r.type === 'youtube') {
+          <iframe
+            class="yt-frame"
+            [class.vertical]="r.vertical"
+            [src]="embedUrl()"
+            [title]="r.name"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        } @else {
+          <video [src]="r.videoUrl" controls loop playsinline></video>
+        }
+      </div>
+
+      <div class="side">
+        <div class="side-head">
+          <h1>{{ r.name }}</h1>
+          <span class="date">{{ r.date }}</span>
+          @if (r.categories.length) {
+            <div class="categories">
+              @for (category of r.categories; track category) {
+                <span class="category-tag">{{ category }}</span>
+              }
+            </div>
+          }
+        </div>
+
+        <p class="description">{{ r.description }}</p>
+
+        <div class="comments">
+          @if (comments().length) {
+            @for (comment of comments(); track $index) {
+              <div class="comment">
+                <span class="author">{{ comment.author }}</span>
+                <span class="text">{{ comment.text }}</span>
+              </div>
+            }
+          } @else {
+            <p class="no-comments">Aucun commentaire. Sois le premier à sortir une punchline.</p>
+          }
+        </div>
+
+        <form class="comment-form" (ngSubmit)="addComment()">
+          <input
+            type="text"
+            placeholder="Ajouter un commentaire…"
+            [ngModel]="newComment()"
+            (ngModelChange)="newComment.set($event)"
+            name="comment"
+          />
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  } @else {
+    <div class="not-found">
+      <p>Cette ref n'existe pas (encore).</p>
+      <a routerLink="/feed">← Retour au feed</a>
+    </div>
+  }
+</main>

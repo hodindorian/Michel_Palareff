@@ -1,0 +1,87 @@
+<app-header />
+
+<main class="feed">
+  <div class="feed-intro">
+    <h1>Toutes les refs</h1>
+    <p>La collection officielle. Survole une vidéo pour l'aperçu, clique pour le lore complet.</p>
+
+    <input
+      type="search"
+      class="search"
+      placeholder="Chercher par nom, description ou phrase culte…"
+      [ngModel]="query()"
+      (ngModelChange)="query.set($event)"
+      name="search"
+    />
+
+    <div class="categories">
+      @for (category of categories(); track category) {
+        <button
+          type="button"
+          class="category-filter"
+          [class.active]="selectedCategory() === category"
+          (click)="selectedCategory.set(category)"
+        >
+          {{ category }}
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (filteredRefs(); as refs) {
+    @if (refs.length) {
+      <div class="grid">
+        @for (ref of refs; track ref.id) {
+          <a class="card" [routerLink]="['/refs', ref.id]">
+            @if (ref.type === 'local') {
+              <video
+                #vid
+                class="thumb"
+                [src]="ref.videoUrl"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                (mouseenter)="vid.play()"
+                (mouseleave)="vid.pause(); vid.currentTime = 0"
+              ></video>
+            } @else {
+              <div class="thumb yt-thumb">
+                <img [src]="'https://img.youtube.com/vi/' + ref.youtubeId + '/hqdefault.jpg'" [alt]="ref.name" />
+                <span class="yt-badge">▶ YouTube</span>
+              </div>
+            }
+            <div class="card-info">
+              <span class="card-name">{{ ref.name }}</span>
+              <span class="card-date">{{ ref.date }}</span>
+              @if (ref.categories.length) {
+                <div class="card-categories">
+                  @for (category of ref.categories; track category) {
+                    <span class="category-tag">{{ category }}</span>
+                  }
+                </div>
+              }
+            </div>
+          </a>
+        }
+      </div>
+    } @else if (query().trim()) {
+      <div class="empty">
+        <p>Aucune ref ne matche "{{ query() }}".</p>
+        <p class="empty-hint">Michel n'a peut-être pas encore la ref lui non plus.</p>
+      </div>
+    } @else {
+      <div class="empty">
+        <p>Aucune ref pour l'instant.</p>
+        <p class="empty-hint">
+          Dépose une vidéo dans <code>public/videos/</code>, relance <code>npm start</code>, et
+          elle apparaîtra ici.
+        </p>
+      </div>
+    }
+  } @else {
+    <div class="empty">
+      <p>Chargement des refs…</p>
+    </div>
+  }
+</main>

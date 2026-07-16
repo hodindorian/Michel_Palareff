@@ -1,0 +1,50 @@
+:root {
+  --mp-bg: #0e0e12;
+  --mp-surface: #18181f;
+  --mp-surface-raised: #202028;
+  --mp-border: rgba(255, 255, 255, 0.08);
+  --mp-text: #f2f0eb;
+  --mp-text-dim: #a3a1ab;
+  --mp-gold: #f4b93f;
+  --mp-gold-dim: #c8992f;
+  --mp-pink: #ff5c8a;
+  --mp-radius: 14px;
+  --mp-font:
+    'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--mp-bg);
+  color: var(--mp-text);
+  font-family: var(--mp-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--mp-gold);
+  color: #0e0e12;
+}

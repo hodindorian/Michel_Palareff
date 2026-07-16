@@ -1,0 +1,91 @@
+.login {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(244, 185, 63, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255, 92, 138, 0.08), transparent 40%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  color: var(--mp-gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.tagline {
+  margin: 0.5rem 0 2rem;
+  color: var(--mp-text-dim);
+  font-size: 0.95rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--mp-text-dim);
+}
+
+input {
+  background: var(--mp-surface-raised);
+  border: 1px solid var(--mp-border);
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  color: var(--mp-text);
+  font-size: 0.95rem;
+
+  &:focus {
+    outline: none;
+    border-color: var(--mp-gold);
+  }
+}
+
+.error {
+  margin: 0;
+  color: var(--mp-pink);
+  font-size: 0.85rem;
+}
+
+button {
+  margin-top: 0.5rem;
+  background: var(--mp-gold);
+  color: #1a1207;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--mp-gold-dim);
+  }
+}

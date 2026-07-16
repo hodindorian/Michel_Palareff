@@ -1,0 +1,7 @@
+services:
+  michel-palareff:
+    build: .
+    container_name: michel-palareff
+    restart: unless-stopped
+    ports:
+      - "8080:80"

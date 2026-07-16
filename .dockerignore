@@ -1,0 +1,10 @@
+node_modules
+dist
+.angular
+.git
+.vscode
+.editorconfig
+.prettierrc
+coverage
+npm-debug.log
+*.md

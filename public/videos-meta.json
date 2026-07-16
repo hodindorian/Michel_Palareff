@@ -1,0 +1,13 @@
+{
+  "exemple.mp4": {
+    "name": "Le fameux exemple",
+    "date": "2024-01-01",
+    "description": "Ceci est un exemple. Remplace-moi par une vraie ref, ou supprime cette entrée.",
+    "script": ["Phrase culte n°1", "Phrase culte n°2"],
+    "categories": ["meme", "basique"],
+    "comments": [
+      { "author": "Michel", "text": "Iconique." },
+      { "author": "Un pote", "text": "Attends j'ai pas la ref là" }
+    ]
+  }
+}

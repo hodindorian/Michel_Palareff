@@ -1,0 +1,46 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: rgba(14, 14, 18, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--mp-border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--mp-text);
+}
+
+.logo-mark {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.logout {
+  background: transparent;
+  border: 1px solid var(--mp-border);
+  color: var(--mp-text-dim);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    color: var(--mp-text);
+    border-color: var(--mp-gold);
+  }
+}

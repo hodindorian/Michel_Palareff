@@ -1,0 +1,42 @@
+<main class="login">
+  <section class="login-card">
+    <p class="kicker">🏆 Le musée des refs</p>
+    <h1>Michel Palareff</h1>
+    <p class="tagline">Vous avez pas la ref ? Maintenant si.</p>
+
+    <form (ngSubmit)="submit()" class="login-form">
+      <label>
+        <span>Identifiant</span>
+        <input
+          type="text"
+          name="username"
+          autocomplete="username"
+          [ngModel]="username()"
+          (ngModelChange)="username.set($event)"
+          placeholder="michel"
+          autofocus
+        />
+      </label>
+
+      <label>
+        <span>Mot de passe</span>
+        <input
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          [ngModel]="password()"
+          (ngModelChange)="password.set($event)"
+          placeholder="••••••••"
+        />
+      </label>
+
+      @if (error()) {
+        <p class="error">
+          Non mais allô, c'est pas les bons identifiants. Un indice : c'est dans le nom du site.
+        </p>
+      }
+
+      <button type="submit">Entrer dans la légende</button>
+    </form>
+  </section>
+</main>
