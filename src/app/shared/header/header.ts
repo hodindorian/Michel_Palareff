@@ -10,11 +10,10 @@ import { AuthService } from '../../core/auth.service';
   styleUrl: './header.scss',
 })
 export class Header {
-  private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  protected readonly auth = inject(AuthService);
 
   logout(): void {
-    this.auth.logout();
-    this.router.navigateByUrl('/login');
+    this.auth.logout().subscribe(() => this.router.navigateByUrl('/login'));
   }
 }

@@ -3,5 +3,21 @@ services:
     build: .
     container_name: michel-palareff
     restart: unless-stopped
+    depends_on:
+      - api
     ports:
       - "6767:80"
+
+  api:
+    build: ./server
+    container_name: michel-palareff-api
+    restart: unless-stopped
+    environment:
+      DB_CLIENT: ${DB_CLIENT}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      JWT_SECRET: ${JWT_SECRET}
+      NODE_ENV: production

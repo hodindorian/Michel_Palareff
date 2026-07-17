@@ -3,5 +3,10 @@
     <img src="logo.png" alt="Michel Palareff" class="logo-mark" />
     <span>Michel Palareff</span>
   </a>
-  <button type="button" class="logout" (click)="logout()">Se déconnecter</button>
+  <div class="actions">
+    @if (auth.username(); as username) {
+      <span class="username">{{ username }}</span>
+    }
+    <button type="button" class="logout" (click)="logout()">Se déconnecter</button>
+  </div>
 </header>

@@ -8,8 +8,12 @@
 
 # Node
 /node_modules
+server/node_modules
 npm-debug.log
 yarn-error.log
+
+# Secrets
+.env
 
 # IDEs and editors
 .idea/
@@ -47,3 +51,4 @@ Thumbs.db
 /public/videos/*
 !/public/videos/.gitkeep
 /public/videos-manifest.json
+.env

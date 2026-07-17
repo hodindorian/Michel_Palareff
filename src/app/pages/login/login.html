@@ -6,7 +6,7 @@
 
     <form (ngSubmit)="submit()" class="login-form">
       <label>
-        <span>Identifiant</span>
+        <span>Pseudo</span>
         <input
           type="text"
           name="username"
@@ -23,7 +23,7 @@
         <input
           type="password"
           name="password"
-          autocomplete="current-password"
+          [autocomplete]="mode() === 'login' ? 'current-password' : 'new-password'"
           [ngModel]="password()"
           (ngModelChange)="password.set($event)"
           placeholder="••••••••"
@@ -31,12 +31,24 @@
       </label>
 
       @if (error()) {
-        <p class="error">
-          Non mais allô, c'est pas les bons identifiants. Un indice : c'est dans le nom du site.
-        </p>
+        <p class="error">{{ error() }}</p>
       }
 
-      <button type="submit">Entrer dans la légende</button>
+      <button type="submit" [disabled]="loading()">
+        @if (mode() === 'login') {
+          Entrer dans la légende
+        } @else {
+          Créer mon compte
+        }
+      </button>
     </form>
+
+    <button type="button" class="mode-toggle" (click)="toggleMode()">
+      @if (mode() === 'login') {
+        Pas encore de compte ? Crée-le ici.
+      } @else {
+        Déjà un compte ? Connecte-toi.
+      }
+    </button>
   </section>
 </main>

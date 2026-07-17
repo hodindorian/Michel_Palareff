@@ -160,16 +160,6 @@
     "comments": []
   },
   {
-    "url": "https://www.youtube.com/watch?v=HGeCH5uKlYQ",
-    "name": "Moi je suis un nerveux",
-    "date": "2026-07-16",
-    "vertical": false,
-    "description": "Clip de live Twitch de Maxime Biaggi expliquant qu'il est \"un nerveux\", devenu un template de réaction très repris en fond vert sur TikTok.",
-    "script": ["Je vais t'expliquer un truc : moi je suis un nerveux", "Ça part en faites"],
-    "categories": ["meme"],
-    "comments": []
-  },
-  {
     "url": "https://www.youtube.com/watch?v=_yt_AZETzIE",
     "name": "Puceau Moi",
     "date": "2026-07-16",
@@ -184,8 +174,8 @@
     "name": "Moi je suis un nerveux",
     "date": "2026-07-16",
     "vertical": false,
-    "description": "Variante du même registre que \"Moi je suis un nerveux\" (clip de live francophone), je n'ai pas pu confirmer la source exacte de cette version précise.",
-    "script": ["Je suis un peu nerveux"],
+    "description": "Clip de live Twitch de Maxime Biaggi expliquant qu'il est \"un nerveux\", devenu un template de réaction très repris en fond vert sur TikTok.",
+    "script": ["Je vais t'expliquer un truc : moi je suis un nerveux", "Ça part en faites"],
     "categories": ["meme"],
     "comments": []
   },
@@ -240,12 +230,22 @@
     "comments": []
   },
   {
-    "url": "https://www.youtube.com/watch?v=0g1k7r5J3xM",
+    "url": "https://www.youtube.com/watch?v=VzbDjE0xsq8",
     "name": "C'est pas faux",
     "date": "2026-07-16",
     "vertical": false,
     "description": "Réplique culte de Perceval dans la série Kaamelott.",
     "script": ["C'est pas faux"],
+    "categories": ["humour", "série"],
+    "comments": []
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=9diaThxYnKA",
+    "name": "Arrêtez d'essayer de dire des trucs",
+    "date": "2026-07-16",
+    "vertical": false,
+    "description": "Réplique culte de Arthur à Perceval dans la série Kaamelott.",
+    "script": ["Il faut que vous arrêtiez d'essayer de dire des trucs"],
     "categories": ["humour", "série"],
     "comments": []
   }

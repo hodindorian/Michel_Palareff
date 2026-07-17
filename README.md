@@ -76,27 +76,37 @@ npm start   # lance le serveur de dev sur http://localhost:4200
 npm run build
 ```
 
-Login de démo : `michel` / `palareff`.
+## Comptes
+
+Il n'y a plus de login codé en dur. N'importe qui peut créer un compte depuis la page de login
+(bouton "Pas encore de compte ?") avec juste un pseudo (3-32 caractères) et un mot de passe
+(6 caractères minimum) — aucune autre info demandée.
+
+Techniquement : une petite API (`server/`, Node/Express) gère l'inscription/connexion, hash les
+mots de passe avec bcrypt, et pose un cookie de session (JWT, httpOnly) valable 30 jours. Les
+comptes sont stockés dans une table `michel_palareff_users` d'une base PostgreSQL ou MySQL/MariaDB
+que tu fournis toi-même (voir `.env.example`) — la table est créée automatiquement au démarrage
+si elle n'existe pas encore, rien d'autre n'est touché dans la base.
 
 ## Déploiement (Docker)
 
-Le site est 100% statique (pas de backend), donc l'image Docker se limite à un build Angular
-servi par nginx.
+Le site comprend deux conteneurs : le front Angular servi par nginx, et l'API d'auth. La base de
+données, elle, n'est **pas** conteneurisée ici — tu pointes vers celle qui tourne déjà sur ton
+serveur (PostgreSQL en local, MariaDB en prod par exemple).
+
+1. Copie `.env.example` en `.env` et renseigne les infos de connexion à ta base (`DB_CLIENT`,
+   `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`) ainsi qu'un `JWT_SECRET` (une vraie
+   valeur aléatoire, par ex. `openssl rand -hex 32`).
+2. Lance :
 
 ```bash
 docker compose up -d --build
 ```
 
-Le site est alors dispo sur `http://<ton-serveur>:8080`. Le port exposé se change dans
-`docker-compose.yml` (`"8080:80"`).
+Le site est alors dispo sur `http://<ton-serveur>:6767` (port modifiable dans
+`docker-compose.yml`).
 
 Comme les vidéos sont scannées et intégrées **au moment du build** (`public/videos/`,
-`public/videos-meta.json`, `public/youtube-refs.json`), ajouter une nouvelle ref sur le serveur
-se fait en déposant le fichier vidéo (ou en éditant les `.json`) puis en relançant :
-
-```bash
-docker compose up -d --build
-```
-
-Pas de volume à monter, pas d'état à gérer : chaque rebuild régénère le manifest et repart d'une
-image propre.
+`public/videos-meta.json`, `public/youtube-refs.json`), ajouter une nouvelle ref se fait en
+déposant le fichier vidéo (ou en éditant les `.json`) puis en relançant la même commande. Les
+comptes utilisateurs, eux, vivent dans la base et survivent aux rebuilds/redeploys.

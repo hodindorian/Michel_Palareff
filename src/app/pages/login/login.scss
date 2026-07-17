@@ -74,7 +74,7 @@ input {
   font-size: 0.85rem;
 }
 
-button {
+button[type='submit'] {
   margin-top: 0.5rem;
   background: var(--mp-gold);
   color: #1a1207;
@@ -87,5 +87,24 @@ button {
 
   &:hover {
     background: var(--mp-gold-dim);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.mode-toggle {
+  margin-top: 1.25rem;
+  background: none;
+  border: none;
+  color: var(--mp-text-dim);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  padding: 0;
+
+  &:hover {
+    color: var(--mp-gold);
   }
 }
