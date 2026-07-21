@@ -33,23 +33,35 @@
       <div class="grid">
         @for (ref of refs; track ref.id) {
           <a class="card" [routerLink]="['/refs', ref.id]">
-            @if (ref.type === 'local') {
-              <video
-                #vid
-                class="thumb"
-                [src]="ref.videoUrl"
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                (mouseenter)="vid.play()"
-                (mouseleave)="vid.pause(); vid.currentTime = 0"
-              ></video>
-            } @else {
-              <div class="thumb yt-thumb">
-                <img [src]="'https://img.youtube.com/vi/' + ref.youtubeId + '/hqdefault.jpg'" [alt]="ref.name" />
-                <span class="yt-badge">▶ YouTube</span>
-              </div>
+            @switch (ref.type) {
+              @case ('local') {
+                <video
+                  #vid
+                  class="thumb"
+                  [src]="ref.videoUrl"
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  (mouseenter)="vid.play()"
+                  (mouseleave)="vid.pause(); vid.currentTime = 0"
+                ></video>
+              }
+              @case ('photo') {
+                <img class="thumb" [src]="ref.imageUrl" [alt]="ref.name" />
+              }
+              @case ('youtube') {
+                <div class="thumb yt-thumb">
+                  <img [src]="'https://img.youtube.com/vi/' + ref.youtubeId + '/hqdefault.jpg'" [alt]="ref.name" />
+                  <span class="yt-badge">▶ YouTube</span>
+                </div>
+              }
+              @case ('instagram') {
+                <div class="thumb ig-thumb">
+                  <span class="ig-glyph">📸</span>
+                  <span class="ig-badge">Instagram</span>
+                </div>
+              }
             }
             <div class="card-info">
               <span class="card-name">{{ ref.name }}</span>

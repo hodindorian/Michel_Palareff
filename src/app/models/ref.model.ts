@@ -19,10 +19,22 @@ export interface LocalRef extends RefBase {
   videoUrl: string;
 }
 
+export interface PhotoRef extends RefBase {
+  type: 'photo';
+  filename: string;
+  imageUrl: string;
+}
+
 export interface YoutubeRef extends RefBase {
   type: 'youtube';
   youtubeId: string;
   vertical: boolean;
 }
 
-export type Ref = LocalRef | YoutubeRef;
+export interface InstagramRef extends RefBase {
+  type: 'instagram';
+  instagramId: string;
+  vertical: boolean;
+}
+
+export type Ref = LocalRef | PhotoRef | YoutubeRef | InstagramRef;

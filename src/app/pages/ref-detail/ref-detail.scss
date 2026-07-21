@@ -59,6 +59,13 @@
   }
 }
 
+.photo {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+}
+
 .side {
   display: flex;
   flex-direction: column;

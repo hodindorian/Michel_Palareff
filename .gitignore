@@ -47,8 +47,10 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-# Refs (videos are stored locally only, never committed)
+# Refs (videos/photos are stored locally only, never committed)
 /public/videos/*
 !/public/videos/.gitkeep
+/public/pictures/*
+!/public/pictures/.gitkeep
 /public/videos-manifest.json
 .env

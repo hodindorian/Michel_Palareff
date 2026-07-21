@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
 import authRouter from './auth.js';
+import commentsRouter from './comments.js';
 import { ensureSchema } from './db.js';
 
 if (!process.env.JWT_SECRET) {
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(cors({ origin: process.env.CORS_ORIGIN ?? true, credentials: true }));
 
 app.use('/api/auth', authRouter);
+app.use('/api/refs', commentsRouter);
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
 const port = Number(process.env.PORT) || 3000;

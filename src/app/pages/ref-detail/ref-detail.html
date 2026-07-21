@@ -5,17 +5,32 @@
     <a routerLink="/feed" class="back-link">← Retour au feed</a>
     <div class="post">
       <div class="player">
-        @if (r.type === 'youtube') {
-          <iframe
-            class="yt-frame"
-            [class.vertical]="r.vertical"
-            [src]="embedUrl()"
-            [title]="r.name"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin"
-          ></iframe>
-        } @else {
-          <video [src]="r.videoUrl" controls loop playsinline></video>
+        @switch (r.type) {
+          @case ('youtube') {
+            <iframe
+              class="yt-frame"
+              [class.vertical]="r.vertical"
+              [src]="embedUrl()"
+              [title]="r.name"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          }
+          @case ('instagram') {
+            <iframe
+              class="yt-frame vertical"
+              [src]="embedUrl()"
+              [title]="r.name"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          }
+          @case ('photo') {
+            <img class="photo" [src]="r.imageUrl" [alt]="r.name" />
+          }
+          @default {
+            <video [src]="r.videoUrl" controls loop playsinline></video>
+          }
         }
       </div>
 

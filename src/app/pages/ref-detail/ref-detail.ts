@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -9,7 +9,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Header } from '../../shared/header/header';
 import { RefComment } from '../../models/ref.model';
 import { RefsService } from '../../services/refs.service';
-import { LocalCommentsService } from '../../services/local-comments.service';
+import { CommentsService } from '../../services/comments.service';
 
 @Component({
   selector: 'app-ref-detail',
@@ -20,7 +20,7 @@ import { LocalCommentsService } from '../../services/local-comments.service';
 export class RefDetail {
   private readonly route = inject(ActivatedRoute);
   private readonly refsService = inject(RefsService);
-  private readonly localComments = inject(LocalCommentsService);
+  private readonly commentsService = inject(CommentsService);
   private readonly sanitizer = inject(DomSanitizer);
 
   private readonly refFromRoute = toSignal(
@@ -37,30 +37,56 @@ export class RefDetail {
 
   readonly embedUrl = computed(() => {
     const ref = this.ref();
-    if (!ref || ref.type !== 'youtube') return null;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube-nocookie.com/embed/${ref.youtubeId}`,
-    );
+    if (!ref) return null;
+
+    if (ref.type === 'youtube') {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(
+        `https://www.youtube-nocookie.com/embed/${ref.youtubeId}`,
+      );
+    }
+    if (ref.type === 'instagram') {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(
+        `https://www.instagram.com/reel/${ref.instagramId}/embed`,
+      );
+    }
+    return null;
   });
 
-  private readonly localCommentsBump = signal(0);
+  private readonly dbComments = signal<RefComment[]>([]);
 
   readonly comments = computed<RefComment[]>(() => {
     const ref = this.ref();
-    this.localCommentsBump();
     if (!ref) return [];
-    return [...ref.comments, ...this.localComments.getFor(ref.id)];
+    return [...ref.comments, ...this.dbComments()];
   });
 
   readonly newComment = signal('');
+  readonly posting = signal(false);
+
+  constructor() {
+    effect(() => {
+      const ref = this.ref();
+      if (!ref) {
+        this.dbComments.set([]);
+        return;
+      }
+      this.commentsService.getFor(ref.id).subscribe((comments) => this.dbComments.set(comments));
+    });
+  }
 
   addComment(): void {
     const ref = this.ref();
     const text = this.newComment().trim();
-    if (!ref || !text) return;
+    if (!ref || !text || this.posting()) return;
 
-    this.localComments.add(ref.id, { author: 'Toi', text });
-    this.newComment.set('');
-    this.localCommentsBump.update((n) => n + 1);
+    this.posting.set(true);
+    this.commentsService.add(ref.id, text).subscribe({
+      next: (comment) => {
+        this.dbComments.update((comments) => [...comments, comment]);
+        this.newComment.set('');
+        this.posting.set(false);
+      },
+      error: () => this.posting.set(false),
+    });
   }
 }

@@ -39,6 +39,13 @@ uniquement dans leur navigateur (`localStorage`), rien n'est envoyé nulle part.
 Les vidéos elles-mêmes ne sont jamais commitées (voir `.gitignore`) : c'est un stockage 100%
 local, sans backend.
 
+### Ajouter une photo
+
+Même principe que pour les vidéos, mais dans `public/pictures/` (`.jpg`, `.jpeg`, `.png`, `.webp`,
+`.gif`), avec les overrides dans `public/pictures-meta.json` (même format que
+`videos-meta.json`). Sur la page détail, la photo s'affiche directement au lieu d'un lecteur
+vidéo.
+
 ### Ajouter une ref YouTube
 
 Pour une ref qui n'est pas un fichier local mais une vidéo YouTube (short ou classique), édite
@@ -62,6 +69,31 @@ Pour une ref qui n'est pas un fichier local mais une vidéo YouTube (short ou cl
 `url` accepte un lien `youtube.com/shorts/...`, `youtube.com/watch?v=...` ou `youtu.be/...` (ou
 directement un `youtubeId`). `vertical` contrôle le format du lecteur sur la page détail (`true`
 pour un short). Comme pour les vidéos locales, tout le reste est optionnel.
+
+### Ajouter une ref Instagram
+
+Même principe, dans `public/instagram-refs.json` :
+
+```json
+[
+  {
+    "url": "https://www.instagram.com/reel/xxxxxxxxxxx/",
+    "name": "Nom affiché",
+    "date": "2024-05-12",
+    "vertical": true,
+    "description": "Contexte, punchline, tout ce que tu veux.",
+    "script": ["Phrase culte n°1"],
+    "categories": ["meme"],
+    "comments": [{ "author": "Michel", "text": "Iconique." }]
+  }
+]
+```
+
+`url` accepte un lien `instagram.com/reel/...`, `instagram.com/reels/...` ou `instagram.com/p/...`
+(ou directement un `instagramId`). La page détail embed le post via l'iframe publique
+d'Instagram — pas besoin de compte ni de clé d'API, mais contrairement à YouTube, Instagram ne
+fournit pas de miniature publique : la carte dans le feed affiche juste un badge dégradé
+Instagram plutôt qu'un aperçu de l'image/vidéo.
 
 ### Chercher une ref
 

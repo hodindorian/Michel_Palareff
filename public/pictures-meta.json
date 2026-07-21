@@ -1,0 +1,18 @@
+{
+  "karimbenzemainsta.jpg": {
+    "name": "Ca ne m'interesse pas",
+    "date": "2024-01-01",
+    "description": "Karim Benzema, footballeur",
+    "script": [],
+    "categories": ["meme", "foot"],
+    "comments": []
+  },
+  "matteoprison.jpg": {
+    "name": "Matteo",
+    "date": "2025",
+    "description": "Matteo, prisonnier",
+    "script": [],
+    "categories": ["meme"],
+    "comments": []
+  }
+}

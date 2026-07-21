@@ -3,8 +3,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import { db, USERS_TABLE } from './db.js';
+import { COOKIE_NAME, getSessionUser } from './session.js';
 
-const COOKIE_NAME = 'mp_session';
 const JWT_SECRET = process.env.JWT_SECRET;
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -83,17 +83,11 @@ router.post('/logout', (_req, res) => {
 });
 
 router.get('/me', (req, res) => {
-  const token = req.cookies?.[COOKIE_NAME];
-  if (!token) {
+  const user = getSessionUser(req);
+  if (!user) {
     return res.status(401).json({ error: 'Non connecté.' });
   }
-
-  try {
-    const payload = jwt.verify(token, JWT_SECRET);
-    res.json({ username: payload.username });
-  } catch {
-    res.status(401).json({ error: 'Session invalide ou expirée.' });
-  }
+  res.json({ username: user.username });
 });
 
 export default router;
