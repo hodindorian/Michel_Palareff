@@ -1,13 +1,10 @@
 {
-  "exemple.mp4": {
-    "name": "Le fameux exemple",
-    "date": "2024-01-01",
-    "description": "Ceci est un exemple. Remplace-moi par une vraie ref, ou supprime cette entrée.",
-    "script": ["Phrase culte n°1", "Phrase culte n°2"],
-    "categories": ["meme", "basique"],
-    "comments": [
-      { "author": "Michel", "text": "Iconique." },
-      { "author": "Un pote", "text": "Attends j'ai pas la ref là" }
-    ]
+  "megademon.mp4": {
+    "name": "La Méga Démon ",
+    "date": "2025-05-08",
+    "description": "Pigeon mort rébou",
+    "script": ["Il est complètement mort rébou avec la méga démon 16 degrés"],
+    "categories": ["meme"],
+    "comments": []
   }
 }
