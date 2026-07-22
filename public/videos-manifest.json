@@ -144,20 +144,6 @@
   },
   {
     "type": "youtube",
-    "id": "yt-u8gjyfrevjs",
-    "youtubeId": "u8GjyFreVJs",
-    "vertical": false,
-    "name": "Ryan Gosling Enjoying Life",
-    "date": "2026-07-21",
-    "description": "Template meme viral montrant Ryan Gosling détendu et souriant, réutilisé en fond vert pour illustrer une petite victoire du quotidien.",
-    "script": [],
-    "categories": [
-      "meme"
-    ],
-    "comments": []
-  },
-  {
-    "type": "youtube",
     "id": "yt-j-v5-dnhal0",
     "youtubeId": "j_V5_dnhaL0",
     "vertical": true,
@@ -382,6 +368,23 @@
     ],
     "categories": [
       "meme"
+    ],
+    "comments": []
+  },
+  {
+    "type": "local",
+    "id": "ryangoslinghappylife",
+    "filename": "RyanGoslingHappyLife.mp4",
+    "videoUrl": "videos/RyanGoslingHappyLife.mp4",
+    "name": "Ryan Gosling Happy Life",
+    "date": "2025-05-08",
+    "description": "Ryan Gosling happy",
+    "script": [
+      "Ryan Gosling"
+    ],
+    "categories": [
+      "meme",
+      "cinéma"
     ],
     "comments": []
   },
